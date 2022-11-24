@@ -431,9 +431,6 @@ class DigilanTokenAdmin
             case 'type':
                 $safe_value = DigilanTokenSanitize::sanitize_form_field_type($unsafe_value);
                 break;
-            case 'display-name':
-                $safe_value = DigilanTokenSanitize::sanitize_form_field_display_name($unsafe_value);
-                break;
             case 'instruction':
                 $safe_value = DigilanTokenSanitize::sanitize_form_field_instruction($unsafe_value);
                 break;
@@ -475,7 +472,7 @@ class DigilanTokenAdmin
             }
             $lang_code = $lang['code'];
 
-            $safe_display_name = self::sanitize_form_field_option_by_type('display-name', $_POST["digilan-token-new-field/display-name/$lang_code"]);
+            $safe_display_name = DigilanTokenSanitize::sanitize_form_field_display_name($lang_code);            
             $new_field_data['display-name'][$lang_code] = $safe_display_name;
 
             $safe_instruction = self::sanitize_form_field_option_by_type('instruction', $_POST["digilan-token-new-field/instruction/$lang_code"]);
