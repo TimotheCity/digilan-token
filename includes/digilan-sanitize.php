@@ -22,7 +22,9 @@ class DigilanTokenSanitize
         if (preg_match($regex, $unsafe_value) == 1) {
             return $unsafe_value;
         }
-        return false;
+        \DLT\Notices::addError(sprintf('Invalid value for %s', $field_option));
+        wp_redirect(self::getAdminUrl('form-settings')); // FIXME, redirect to admin if admin only
+        exit();
     }
 
     public static function sanitize_post($in)
@@ -205,7 +207,8 @@ class DigilanTokenSanitize
         return self::sanitize_test_regex($unsafe_value, $re);
     }
 
-    public static function sanitize_form_field_display_name($unsafe_value) {
+    public static function sanitize_form_field_display_name($lang_code) {
+        $unsafe_value = $_POST["digilan-token-new-field/display-name/$lang_code"]
         $re = '/^[a-zA-ZÀ-ú\s]*$/';
         return self::sanitize_test_regex($unsafe_value, $re);
     }
