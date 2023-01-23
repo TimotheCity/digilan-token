@@ -156,7 +156,7 @@ class DigilanTokenProviderMail extends DigilanTokenSocialProviderDummy
         required
         class="regular-text"
         name="dlt-mail"
-        style="padding: 10px 20px; margin-bottom: 5px; width: 100%"
+        style="padding: 10px 20px; margin-bottom: 10px; width: 100%; font-size: small;"
       />
       <?= DigilanTokenUserForm::add_hidden_inputs($user_form_fields_in); ?>
       <input type="hidden" name="action" value="dlt_mail_auth" />

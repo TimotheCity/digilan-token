@@ -112,7 +112,7 @@ div.dlt-container .dlt-button-google[data-skin="light"] {
 #custom-form-portal input[type=tel] {
   flex: 1;
   padding: 10px 20px;
-  margin: 8px 0;
+  margin: 0;
   box-sizing: border-box;
   max-width: 350px;
   font-size: small;
@@ -128,7 +128,7 @@ div.dlt-container .dlt-button-google[data-skin="light"] {
 }
 
 #custom-form-portal label.input-label {
-  margin-top: 10px;
+  margin: 10px 0 0 0;
   max-width: 350px;
   width: 100%;
   text-align: left;
