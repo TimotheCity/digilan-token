@@ -713,6 +713,13 @@ class DigilanTokenConnection
       if (DigilanToken::isFromCitybox()) {
         $settings = DigilanToken::$settings;
         $langing_page = $settings->get('landing-page');
+
+        $hostname = DigilanTokenSanitize::int_to_mac($ap_mac);
+        $ap_info = get_option('digilan_token_%s', $hostname);
+        if (false != $ap_info && false != $ap_info['landing_page']) {
+          $langing_page = $ap_info['landing_page'];
+        }
+
         $data_array += array(
           'landing_page' => $langing_page
         );
