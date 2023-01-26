@@ -177,16 +177,9 @@ class DigilanTokenActivator
     $schedule = array();
     $schedule['on'] = '';
     $schedule['off'] = '';
-    
-    $langing_page = $settings->get('landing-page');
-    $ap_info = get_option('digilan_token_%s', $hostname);
-    if (false != $ap_info && false != $ap_info['landing_page']) {
-      $langing_page = $ap_info['landing_page'];
-    }
-
     $data = array(
       'timeout' => $settings->get('timeout'),
-      'landing_page' => $langing_page,
+      'landing_page' => $settings->get('landing-page'),
       'country_code' => $settings->get('access-points')[$hostname]['country_code'],
       'ssid' => $settings->get('access-points')[$hostname]['ssid'],
       'portal_page' => $settings->get('portal-page'),
