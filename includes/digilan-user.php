@@ -84,7 +84,7 @@ class DigilanTokenUser
     return $id;
   }
 
-  public static function create_ap_user($mac, $social_id, $customized_user_info = array())
+  public static function create_ap_user($mac, $social_id)
   {
     global $wpdb;
     $installed_version = DigilanTokenDB::$installed_version;
@@ -107,15 +107,16 @@ class DigilanTokenUser
       "%d"
     ));
 
-    if ($insert === false) {
-      return $insert;
-    }
+    return $insert;
+  }
 
+  public static function create_user_meta($customized_user_info = array(), $user_id)
+  {
     global $wpdb;
-    $last_id = $wpdb->insert_id;
     $json_customized_user_info = wp_json_encode($customized_user_info);
-    $insert_data = $wpdb->insert("{$wpdb->prefix}digilan_token_meta_users_$installed_version", array(
-      "user_id" => $last_id,
+
+    $insert = $wpdb->insert("{$wpdb->prefix}digilan_token_meta_users_$installed_version", array(
+      "user_id" => $user_id,
       "gender" => $customized_user_info['gender'],
       "age" => $customized_user_info['age'],
       "nationality" => $customized_user_info['nationality'],
@@ -129,6 +130,7 @@ class DigilanTokenUser
       "%d",
       "%s",
     ));
-    return $insert_data;
+
+    return $insert;
   }
 }

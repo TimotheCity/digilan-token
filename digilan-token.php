@@ -1283,10 +1283,13 @@ class DigilanToken
     $user_id = DigilanTokenUser::select_user_id($mac, $social_id);
 
     if ($user_id == false) {
-      $customized_user_info = self::sanitize_custom_portal_inputs($_GET);
-      DigilanTokenUser::create_ap_user($mac, $social_id, $customized_user_info);
+      DigilanTokenUser::create_ap_user($mac, $social_id);
       $user_id = DigilanTokenUser::select_user_id($mac, $social_id);
     }
+
+    $customized_user_info = self::sanitize_custom_portal_inputs($_GET);
+    DigilanTokenUser::create_user_meta($customized_user_info, $user_id);
+
     $update = DigilanTokenUser::validate_user_on_wp($sid, $provider, $user_id);
     if ($update) {
       DigilanTokenConnection::redirect_to_access_point($sid);
